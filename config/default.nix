@@ -41,7 +41,7 @@
     # Required by treesitter and lspsaga
     treeSitterCli
     # Required by CMP and formatters
-    alejandra
+    # alejandra
     nixpkgs-fmt
     prettierd
     nixfmt
