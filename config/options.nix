@@ -11,7 +11,6 @@
       autoindent = true;
       autowrite = true;
       confirm = true;
-      clipboard = "unnamedplus";
       cursorline = true;
       list = true;
       expandtab = true;
@@ -22,12 +21,12 @@
       smartindent = true;
       tabstop = 2;
 
-      ignorecase = true;
+      ignorecase = false;
       incsearch = true;
       completeopt = "menu,menuone,noselect";
       wildmode = "longest:full,full";
 
-      swapfile = false;
+      swapfile = true;
       undofile = true;
       undolevels = 10000;
 
@@ -45,7 +44,7 @@
     # Only enable wl-copy on Linux systems
     clipboard.providers.wl-copy.enable = pkgs.stdenv.isLinux;
     extraConfigLua = ''
-      vim.opt.mouse=""
+      vim.opt.mouse="a"
 
       -- Map common extension variants to core filetypes.
       vim.filetype.add({

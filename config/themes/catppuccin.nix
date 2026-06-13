@@ -19,7 +19,7 @@
         no_bold = false;
         no_italic = false;
         no_underline = false;
-        transparent_background = true;
+        # transparent_background = true;
         integrations = {
           cmp = true;
           notify = true;

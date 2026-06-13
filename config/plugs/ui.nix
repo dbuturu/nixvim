@@ -96,6 +96,7 @@
       enable = true;
       modules.icons = {};
     };
+
     # NOTE: This is annoying using the corne keyboard
     nvim-autopairs.enable = false;
 
@@ -122,7 +123,10 @@
     colorizer.settings = {
       enable = true;
       userDefaultOptions.names = false;
-      filetypes = ["css" "scss"];
+      filetypes = [
+        "css"
+        "scss"
+      ];
     };
 
     image.enable = false;

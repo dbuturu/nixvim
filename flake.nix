@@ -23,7 +23,9 @@
         system,
         ...
       }: let
-        nixpkgsConfig = {allowUnfree = true;};
+        nixpkgsConfig = {
+          allowUnfree = true;
+        };
         pkgsWithConfig = import inputs.nixpkgs {
           inherit system;
           config = nixpkgsConfig;
@@ -52,4 +54,6 @@
         };
       };
     };
+
+
 }
