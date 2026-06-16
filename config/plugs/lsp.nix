@@ -2,7 +2,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   plugins.conform-nvim = {
     enable = true;
     settings = {
@@ -13,19 +14,25 @@
       notify_on_error = true;
 
       formatters_by_ft = {
-        sh = ["shellcheck" "shfmt"];
-        python = ["isort" "black"];
-        css = ["prettier"];
-        html = ["prettier"];
-        json = ["prettier"];
-        lua = ["stylua"];
-        markdown = ["prettier"];
-        nix = ["nixfmtf"];
+        sh = [
+          "shellcheck"
+          "shfmt"
+        ];
+        python = [
+          "isort"
+          "black"
+        ];
+        css = [ "prettier" ];
+        html = [ "prettier" ];
+        json = [ "prettier" ];
+        lua = [ "stylua" ];
+        markdown = [ "prettier" ];
+        nix = [ "nixfmt" ];
         #ruby = ["rubyfmt"];
-        terraform = ["tofu_fmt"];
-        tf = ["tofu_fmt"];
+        terraform = [ "tofu_fmt" ];
+        tf = [ "tofu_fmt" ];
         #yaml = ["yamlfmt"]; # NOTE: Does not accept empty lines after keys
-        yaml = ["prettier"];
+        yaml = [ "prettier" ];
       };
     };
   };
@@ -98,25 +105,25 @@
           yapf.enabled = true;
         };
       };
-      lua_ls.enable = true; #Lua
+      lua_ls.enable = true; # Lua
       cssls.enable = true; # CSS
       html.enable = true; # HTML
       pyright.enable = true; # Python
       # FIXME:
       marksman = {
         enable = !pkgs.stdenv.isDarwin; # Markdown - disabled on darwin (swift build fails)
-        filetypes = ["markdown"];
+        filetypes = [ "markdown" ];
       };
       nil_ls.enable = true; # Nix
       dockerls.enable = true; # Docker
       docker_compose_language_service = {
         enable = true; # Docker compose
-        filetypes = ["yaml"];
+        filetypes = [ "yaml" ];
       };
       bashls.enable = true; # Bash
       yamlls = {
         enable = true; # YAML
-        filetypes = ["yaml"];
+        filetypes = [ "yaml" ];
       };
       terraformls = {
         enable = true; # Terraform
@@ -126,7 +133,15 @@
         ];
       };
       # ansiblels.enable = true; #Ansible - using yamlls instead
-      nginx_language_server.enable = true; #Nginx
+      nginx_language_server.enable = true; # Nginx
+      nixd = {
+        enable = true;
+        settings = {
+          formatting = {
+            command = [ "nixfmt" ]; # This tells the LSP to use the RFC formatter
+          };
+        };
+      };
     };
   };
 
@@ -138,7 +153,7 @@
         debounce = 150;
       };
       sources = [
-        {name = "path";}
+        { name = "path"; }
         {
           name = "nvim_lsp";
           keywordLength = 1;
@@ -269,7 +284,7 @@
   plugins.dap.enable = true;
   plugins.trouble = {
     enable = true;
-    settings = {};
+    settings = { };
   };
   plugins.none-ls = {
     enable = true;
@@ -295,20 +310,23 @@
   plugins.lint = {
     enable = true;
     lintersByFt = {
-      text = ["vale"];
-      json = ["jsonlint"];
-      markdown = ["prettier"];
+      text = [ "vale" ];
+      json = [ "jsonlint" ];
+      markdown = [ "prettier" ];
       #ruby = ["rubyfmt"];
-      dockerfile = ["hadolint"];
-      terraform = ["tofu_fmt"];
-      tf = ["tofu_fmt"];
-      bash = ["shellcheck"];
-      yaml = ["yamlfmt"];
-      nix = ["alejandra"];
-      go = ["golangci-lint"];
-      python = ["flake8"];
-      haskell = ["hlint"];
-      lua = ["selene"];
+      dockerfile = [ "hadolint" ];
+      terraform = [ "tofu_fmt" ];
+      tf = [ "tofu_fmt" ];
+      bash = [ "shellcheck" ];
+      yaml = [ "yamlfmt" ];
+      nix = [
+        "statix"
+        "deadnix"
+      ];
+      go = [ "golangci-lint" ];
+      python = [ "flake8" ];
+      haskell = [ "hlint" ];
+      lua = [ "selene" ];
     };
     linters = {
       hadolint = {

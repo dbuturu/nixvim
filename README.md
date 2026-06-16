@@ -1,4 +1,4 @@
-<h1 id="header" align="center">
+<1 id="header" align="center">
     <img src="https://github.com/nix-community/nixvim/blob/main/assets/nixvim_logo.svg" width="25%" />
    <br>
  sysBOFH NixVim

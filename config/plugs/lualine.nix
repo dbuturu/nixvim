@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   plugins.lualine = {
     enable = true;
     settings = {
@@ -72,7 +73,7 @@
                   ['t']    = '󱆃  TERMINAL',
                 }
                 local mode = vim.api.nvim_get_mode().mode
-                return mode_map[mode] or "__"
+                return mode_map[mode] or mode
               end
             '';
             padding = {
@@ -103,7 +104,7 @@
           }
           {
             __unkeyed-1 = "diagnostics";
-            sources = ["nvim_lsp"];
+            sources = [ "nvim_lsp" ];
             symbols = {
               error = " ";
               warn = " ";

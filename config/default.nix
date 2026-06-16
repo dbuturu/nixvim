@@ -2,7 +2,8 @@
   pkgs,
   system,
   ...
-}: let
+}:
+let
   # Helper to determine if we're on Darwin
   isDarwin = pkgs.stdenv.isDarwin;
   isLinux = pkgs.stdenv.isLinux;
@@ -20,16 +21,10 @@
       "-p"
       "tree-sitter-cli"
     ];
-    buildInputs =
-      if isLinux
-      then [pkgs.stdenv.cc.libc.dev]
-      else [];
-    nativeBuildInputs = [pkgs.llvmPackages.libclang];
+    buildInputs = if isLinux then [ pkgs.stdenv.cc.libc.dev ] else [ ];
+    nativeBuildInputs = [ pkgs.llvmPackages.libclang ];
     LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
-    BINDGEN_EXTRA_CLANG_ARGS =
-      if isLinux
-      then "-isystem ${pkgs.stdenv.cc.libc.dev}/include"
-      else "";
+    BINDGEN_EXTRA_CLANG_ARGS = if isLinux then "-isystem ${pkgs.stdenv.cc.libc.dev}/include" else "";
     doCheck = false;
   };
 
@@ -42,6 +37,8 @@
     treeSitterCli
     # Required by CMP and formatters
     # alejandra
+    statix
+    deadnix
     nixpkgs-fmt
     prettierd
     nixfmt
@@ -67,7 +64,8 @@
   darwinPackages = with pkgs; [
     # macOS uses pbcopy/pbpaste for clipboard, which is built-in
   ];
-in {
+in
+{
   imports = [
     ./themes/catppuccin.nix
     ./plugs/lsp.nix
@@ -83,14 +81,6 @@ in {
 
   extraPackages =
     commonPackages
-    ++ (
-      if isLinux
-      then linuxPackages
-      else []
-    )
-    ++ (
-      if isDarwin
-      then darwinPackages
-      else []
-    );
+    ++ (if isLinux then linuxPackages else [ ])
+    ++ (if isDarwin then darwinPackages else [ ]);
 }

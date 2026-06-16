@@ -38,7 +38,7 @@
       enable = true;
       enableLspFormat = true;
       sources.formatting = {
-        nixfmt-rfc-style.enable = true;
+        nixfmt.enable = true;
         prettier = {
           enable = true;
           package = pkgs.lib.mkDefault pkgs.prettier;
