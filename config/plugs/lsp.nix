@@ -20,7 +20,7 @@
         json = ["prettier"];
         lua = ["stylua"];
         markdown = ["prettier"];
-        nix = ["alejandra"];
+        nix = ["nixfmtf"];
         #ruby = ["rubyfmt"];
         terraform = ["tofu_fmt"];
         tf = ["tofu_fmt"];
